@@ -48,6 +48,9 @@ class User(db.Model):
 
     @staticmethod
     def verify_auth_token(token):
+        if not token:
+            return None
+
         s = Serializer(current_app.config['SECRET_KEY'])
 
         try:

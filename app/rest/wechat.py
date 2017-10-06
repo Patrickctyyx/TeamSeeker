@@ -20,7 +20,7 @@ class WeChatLoginApi(Resource):
         info = r.json()
         if 'session_key' not in info:
             print(info)
-            return {'msg': 'invalid js code!'}, 403
+            return {'errcode': 1, 'msg': 'invalid js code!', 'detail': info}, 403
         user = User.query.get(info.get('openid'))
         if not user:
             user = User(openid=info.get('openid'))
