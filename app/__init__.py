@@ -1,6 +1,8 @@
 from flask import Flask
 from app.config import config
 from app.models import db
+from app.extensions import rest_api
+from app.rest.wechat import WeChatLoginApi
 
 
 def create_app(object_name):
@@ -8,5 +10,8 @@ def create_app(object_name):
     app.config.from_object(config[object_name])
 
     db.init_app(app)
+
+    rest_api.add_resource(WeChatLoginApi, '/api/wxlogin')
+    rest_api.init_app(app)
 
     return app
