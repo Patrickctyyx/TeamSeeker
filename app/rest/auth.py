@@ -11,9 +11,14 @@ class AuthApi(Resource):
             return {
                 'errcode': 6,
                 'msg': 'openid is necessary to get userinfo!'
-            }
+            }, 403
         user = User.query.get(openid)
-        
+        if not user:
+            return {
+                'errcode': 7,
+                'msg': 'user does not exist!'
+            }, 403
+
         result = dict()
         result['name'] = user.name
         result['email'] = user.email
