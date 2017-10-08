@@ -78,6 +78,8 @@ class Student(db.Model):
 
     openid = db.Column(db.String(32), db.ForeignKey('user.openid'), primary_key=True)
     s_num = db.Column(db.String(32), unique=True)
+    level = db.Column(db.Enum('college', 'master', 'doctor'))
+    enter_year = db.Column(db.String(8))
     applications = db.relationship(
         'Application',
         backref='student',

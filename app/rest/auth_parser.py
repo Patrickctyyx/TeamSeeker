@@ -1,0 +1,94 @@
+from flask_restful import reqparse
+
+authinfo_post_parser = reqparse.RequestParser()
+authinfo_post_parser.add_argument(
+    'token',
+    type=str,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'identity',
+    type=int,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'name',
+    type=str,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'email',
+    type=str,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'enter_year',
+    type=str
+)
+authinfo_post_parser.add_argument(
+    'level',
+    type=str
+)
+authinfo_post_parser.add_argument(
+    'university',
+    type=str,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'college',
+    type=str,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'department',
+    type=str,
+    required=True
+)
+authinfo_post_parser.add_argument(
+    'p_num',
+    type=str
+)
+authinfo_post_parser.add_argument(
+    's_num',
+    type=str
+)
+authinfo_post_parser.add_argument(
+    'introduction',
+    type=str
+)
+
+authinfo_put_parser = reqparse.RequestParser()
+authinfo_put_parser.add_argument(
+    'token',
+    type=str,
+    required=True
+)
+authinfo_put_parser.add_argument(
+    'email',
+    type=str
+)
+authinfo_put_parser.add_argument(
+    'enter_year',
+    type=str
+)
+authinfo_put_parser.add_argument(
+    'level',
+    type=str
+)
+authinfo_put_parser.add_argument(
+    'university',
+    type=str
+)
+authinfo_put_parser.add_argument(
+    'college',
+    type=str
+)
+authinfo_put_parser.add_argument(
+    'department',
+    type=str
+)
+authinfo_put_parser.add_argument(
+    'introduction',
+    type=str
+)
+

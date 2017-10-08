@@ -15,7 +15,8 @@ def create_app(object_name):
     rest_api.add_resource(WeChatLoginApi, '/api/wxlogin')
     rest_api.add_resource(
         AuthApi,
-        '/api/auth'
+        '/api/auth',
+        '/api/auth/<string:openid>'
     )
     rest_api.init_app(app)
 
