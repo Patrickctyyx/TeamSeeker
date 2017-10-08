@@ -1,4 +1,5 @@
 from flask_restful import reqparse
+from app.utils import email_type, level_type
 
 authinfo_post_parser = reqparse.RequestParser()
 authinfo_post_parser.add_argument(
@@ -18,7 +19,7 @@ authinfo_post_parser.add_argument(
 )
 authinfo_post_parser.add_argument(
     'email',
-    type=str,
+    type=email_type,
     required=True
 )
 authinfo_post_parser.add_argument(
@@ -27,7 +28,7 @@ authinfo_post_parser.add_argument(
 )
 authinfo_post_parser.add_argument(
     'level',
-    type=str
+    type=level_type
 )
 authinfo_post_parser.add_argument(
     'university',
@@ -65,7 +66,7 @@ authinfo_put_parser.add_argument(
 )
 authinfo_put_parser.add_argument(
     'email',
-    type=str
+    type=email_type
 )
 authinfo_put_parser.add_argument(
     'enter_year',
@@ -73,7 +74,7 @@ authinfo_put_parser.add_argument(
 )
 authinfo_put_parser.add_argument(
     'level',
-    type=str
+    type=level_type
 )
 authinfo_put_parser.add_argument(
     'university',

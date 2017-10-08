@@ -13,6 +13,7 @@ class AuthApi(Resource):
                 'msg': 'openid is necessary to get userinfo!'
             }
         user = User.query.get(openid)
+        
         result = dict()
         result['name'] = user.name
         result['email'] = user.email
@@ -79,7 +80,7 @@ class AuthApi(Resource):
         except IntegrityError:
             return {
                 'errcode': 5,
-                'msg': 'duplicated s_num or p_num or email'
+                'msg': 'duplicated s_num or p_num or email!'
             }, 403
 
         return {'msg': 'ok'}, 200
