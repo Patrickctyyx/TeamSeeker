@@ -46,7 +46,7 @@ class ItemApi(Resource):
             if user.identity != 1:
                 return {
                     'errcode': 8,
-                    'msg': 'permission denied'
+                    'msg': 'permission denied!'
                 }, 403
             if not args.get('theme'):
                 return {

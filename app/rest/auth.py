@@ -85,7 +85,7 @@ class AuthApi(Resource):
         except IntegrityError:
             return {
                 'errcode': 5,
-                'msg': 'duplicated s_num or p_num or email!'
+                'msg': 'duplicate s_num or p_num or email!'
             }, 403
 
         return {'msg': 'ok'}, 200
@@ -119,7 +119,7 @@ class AuthApi(Resource):
         except IntegrityError:
             return {
                 'errcode': 5,
-                'msg': 'duplicate email!'
+                'msg': 'duplicate s_num or p_num or email!'
             }, 403
 
         return {'msg': 'ok'}, 200
