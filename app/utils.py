@@ -12,3 +12,8 @@ def level_type(level):
     if level != 'college' and level != 'master' and level != 'doctor':
         raise ValueError('Not a proper level!')
     return level
+
+
+def status_type(status):
+    if status != 'pending' and status != 'processing' and status != 'ended':
+        raise ValueError('Not a proper status!')

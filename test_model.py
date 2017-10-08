@@ -98,7 +98,4 @@ def test_model():
     print(project.students)
     print(competition1.students)
     print(competition2.students)
-    print(student3.applications)
-
-
-
+    print(student3.applications.all())

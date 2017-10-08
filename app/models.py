@@ -92,8 +92,9 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # type == 1 => project, == 0 => competition
     type = db.Column(db.Integer)
+    # 项目人数
     num = db.Column(db.Integer)
-    status = db.Column(db.String(32))
+    status = db.Column(db.Enum('pending', 'processing', 'ended'))
     ddl = db.Column(db.DateTime)
     requires = db.Column(db.Text)
     cred_at = db.Column(db.DateTime, default=datetime.datetime.now)
@@ -134,7 +135,7 @@ class Competition(db.Model):
 
     id = db.Column(db.Integer, db.ForeignKey('item.id'), primary_key=True)
     comp_name = db.Column(db.String(32))
-    publisher_id = db.Column(db.Integer)
+    publisher_id = db.Column(db.String(32))
     students = db.relationship(
         'Student',
         secondary=competitions,
