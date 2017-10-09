@@ -3,6 +3,7 @@ import os
 from flask_restful import Resource
 from .parser import wxlogin_post_parser
 from app.models import db, User
+from app.errors import InvalidJSCode
 
 
 class WeChatLoginApi(Resource):
@@ -20,7 +21,7 @@ class WeChatLoginApi(Resource):
         info = r.json()
         if 'session_key' not in info:
             print(info)
-            return {'errcode': 1, 'msg': 'invalid js code!', 'detail': info}, 403
+            raise InvalidJSCode(info)
         user = User.query.get(info.get('openid'))
         if not user:
             user = User(openid=info.get('openid'))

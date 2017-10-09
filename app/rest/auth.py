@@ -2,22 +2,22 @@ from flask_restful import Resource
 from app.models import db, User, Teacher, Student
 from .auth_parser import authinfo_post_parser, authinfo_put_parser
 from sqlalchemy.exc import IntegrityError
+from app.errors import (
+    InvalidToken,
+    LackOfInfo,
+    DuplicateInfo,
+    ObjectNotFound
+)
 
 
 class AuthApi(Resource):
 
     def get(self, openid=None):
         if not openid:
-            return {
-                'errcode': 6,
-                'msg': 'openid is necessary to get userinfo!'
-            }, 403
+            raise LackOfInfo('openid')
         user = User.query.get(openid)
         if not user:
-            return {
-                'errcode': 7,
-                'msg': 'user does not exist!'
-            }, 403
+            raise ObjectNotFound('user')
 
         result = dict()
         result['name'] = user.name
@@ -40,10 +40,7 @@ class AuthApi(Resource):
         args = authinfo_post_parser.parse_args()
         user = User.verify_auth_token(args['token'])
         if not user:
-            return {
-                'errcode': 2,
-                'msg': 'invalid token!'
-            }, 403
+            raise InvalidToken()
 
         user.identity = args['identity']
         user.name = args['name']
@@ -55,10 +52,7 @@ class AuthApi(Resource):
 
         if args['identity'] == 1:
             if not args['p_num']:
-                return {
-                    'errcode': 3,
-                    'msg': 'p_num is necessary for a teacher!'
-                }, 403
+                raise LackOfInfo('p_num')
 
             user_iden = Teacher(
                 openid=user.openid,
@@ -66,10 +60,7 @@ class AuthApi(Resource):
             )
         else:
             if not args['s_num'] or not args['level'] or not args['enter_year']:
-                return {
-                    'errcode': 4,
-                    'msg': 'student information lacks!'
-                }, 403
+                raise LackOfInfo('student information')
 
             user_iden = Student(
                 openid=user.openid,
@@ -83,10 +74,7 @@ class AuthApi(Resource):
         try:
             db.session.commit()
         except IntegrityError:
-            return {
-                'errcode': 5,
-                'msg': 'duplicate s_num or p_num or email!'
-            }, 403
+            raise DuplicateInfo('s_num or p_num or email')
 
         return {'msg': 'ok'}, 200
 
@@ -95,10 +83,7 @@ class AuthApi(Resource):
         args = authinfo_put_parser.parse_args()
         user = User.verify_auth_token(args['token'])
         if not user:
-            return {
-                'errcode': 2,
-                'msg': 'invalid token!'
-            }, 403
+            raise InvalidToken()
 
         user.email = args.get('email')
         user.university = args.get('university')
@@ -117,10 +102,7 @@ class AuthApi(Resource):
         try:
             db.session.commit()
         except IntegrityError:
-            return {
-                'errcode': 5,
-                'msg': 'duplicate s_num or p_num or email!'
-            }, 403
+            raise DuplicateInfo('s_num or p_num or email')
 
         return {'msg': 'ok'}, 200
 
