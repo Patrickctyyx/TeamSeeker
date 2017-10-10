@@ -98,6 +98,15 @@ class ItemApi(Resource):
         item = Item.query.get(args['id'])
         if not item:
             raise ObjectNotFound('item')
+
+        if item.type == 1:
+            creater_id = item.project.tea_id
+        else:
+            creater_id = item.competition.publisher_id
+
+        if creater_id != user.openid:
+            raise PermissionNotMatch()
+
         item.num = args.get('num')
         item.status = args.get('status')
         item.ddl = args.get('ddl')
@@ -120,7 +129,7 @@ class ItemApi(Resource):
     def delete(self, proj_id=None):
 
         args = item_delete_api.parse_args()
-        
+
         user = User.verify_auth_token(args['token'])
         if not user:
             raise InvalidToken()
