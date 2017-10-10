@@ -1,5 +1,5 @@
 from app import create_app
-from app.models import db, Teacher, Student, Project, Competition
+from app.models import db, Teacher, Student, Project, Competition, User, Item
 from flask_script import Manager, Server
 from flask_script.commands import ShowUrls, Clean
 from flask_migrate import Migrate, MigrateCommand
@@ -15,7 +15,16 @@ manger.add_command('clean', Clean)
 
 @manger.shell
 def make_shell_context():
-    return dict(app=app, db=db, Teacher=Teacher, Student=Student, Project=Project, Competition=Competition)
+    return dict(
+        app=app,
+        db=db,
+        Teacher=Teacher,
+        Student=Student,
+        Project=Project,
+        Competition=Competition,
+        User=User,
+        Item=Item
+    )
 
 
 if __name__ == '__main__':

@@ -92,3 +92,10 @@ item_put_api.add_argument(
     'comp_name',
     type=str
 )
+
+item_delete_api = reqparse.RequestParser()
+item_delete_api.add_argument(
+    'token',
+    type=str,
+    required=True
+)

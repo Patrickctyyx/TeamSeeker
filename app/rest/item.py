@@ -1,18 +1,40 @@
 from flask_restful import Resource
-from .item_parser import item_post_api, item_put_api
+from .item_parser import item_post_api, item_put_api, item_delete_api
 from app.models import db, User, Item, Project, Competition
 from app.errors import (
     InvalidToken,
     DuplicateInfo,
     PermissionNotMatch,
-    LackOfInfo
+    LackOfInfo,
+    ObjectNotFound
 )
 
 
 class ItemApi(Resource):
 
-    def get(self):
-        pass
+    def get(self, proj_id=None):
+
+        if not proj_id:
+            raise LackOfInfo('project id')
+        item = Item.query.get(proj_id)
+        if not item:
+            raise ObjectNotFound('item')
+        result = dict()
+        result['id'] = item.id
+        result['type'] = item.type
+        result['num'] = item.num
+        result['status'] = item.status
+        result['ddl'] = item.ddl
+        result['requires'] = item.requires
+        result['cred_at'] = str(item.cred_at)
+        if item.type == 1:
+            result['tea_id'] = item.project.tea_id
+            result['theme'] = item.project.theme
+        else:
+            result['comp_name'] = item.competition.comp_name
+            result['publisher_id'] = item.competition.publisher_id
+
+        return result, 200
 
     def post(self):
 
@@ -75,7 +97,7 @@ class ItemApi(Resource):
 
         item = Item.query.get(args['id'])
         if not item:
-            raise LackOfInfo('item')
+            raise ObjectNotFound('item')
         item.num = args.get('num')
         item.status = args.get('status')
         item.ddl = args.get('ddl')
@@ -95,5 +117,29 @@ class ItemApi(Resource):
         db.session.commit()
         return {'msg': 'ok'}, 200
 
-    def delete(self):
-        pass
+    def delete(self, proj_id=None):
+
+        args = item_delete_api.parse_args()
+        
+        user = User.verify_auth_token(args['token'])
+        if not user:
+            raise InvalidToken()
+        item = Item.query.get(proj_id)
+        if not item:
+            raise ObjectNotFound('item')
+
+        if item.type == 1:
+            creater_id = item.project.tea_id
+            item_info = item.project
+        else:
+            creater_id = item.competition.publisher_id
+            item_info = item.competition
+
+        if creater_id != user.openid:
+            raise PermissionNotMatch()
+
+        db.session.delete(item_info)
+        db.session.delete(item)
+        db.session.commit()
+
+        return {'msg': 'ok'}, 200
