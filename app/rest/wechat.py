@@ -20,7 +20,6 @@ class WeChatLoginApi(Resource):
         r = requests.get(url, params=payload)
         info = r.json()
         if 'session_key' not in info:
-            print(info)
             raise InvalidJSCode(info)
         user = User.query.get(info.get('openid'))
         if not user:

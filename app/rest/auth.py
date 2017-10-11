@@ -50,6 +50,13 @@ class AuthApi(Resource):
         user.department = args['department']
         user.information = args.get('information')
 
+        db.session.add(user)
+        try:
+            db.session.flush()
+        except IntegrityError:
+            db.session.rollback()
+            raise DuplicateInfo('email')
+
         if args['identity'] == 1:
             if not args['p_num']:
                 raise LackOfInfo('p_num')
@@ -69,11 +76,11 @@ class AuthApi(Resource):
                 enter_year=args['enter_year']
             )
         db.session.add(user_iden)
-        db.session.add(user)
 
         try:
             db.session.commit()
         except IntegrityError:
+            db.session.rollback()
             raise DuplicateInfo('s_num or p_num or email')
 
         return {'msg': 'ok'}, 200
@@ -91,6 +98,14 @@ class AuthApi(Resource):
         user.department = args.get('department')
         user.information = args.get('information')
 
+        db.session.add(user)
+
+        try:
+            db.session.flush()
+        except IntegrityError:
+            db.session.rollback()
+            raise DuplicateInfo('email')
+
         if user.identity == 0:
             student = user.student
             student.level = args.get('level')
@@ -98,11 +113,7 @@ class AuthApi(Resource):
             db.session.add(student)
 
         db.session.add(user)
-
-        try:
-            db.session.commit()
-        except IntegrityError:
-            raise DuplicateInfo('s_num or p_num or email')
+        db.session.commit()
 
         return {'msg': 'ok'}, 200
 
