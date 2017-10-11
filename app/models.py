@@ -95,7 +95,7 @@ class Item(db.Model):
     # 项目人数
     num = db.Column(db.Integer)
     status = db.Column(db.Enum('pending', 'processing', 'ended'))
-    ddl = db.Column(db.DateTime)
+    ddl = db.Column(db.String(64))
     requires = db.Column(db.Text)
     cred_at = db.Column(db.DateTime, default=datetime.datetime.now)
 

@@ -18,8 +18,16 @@ class DevConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
+class TestConfig(Config):
+    debug = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.sqlite')
+    SQLALCHEMT_ECHO = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+
 config = {
     'dev': DevConfig,
+    'test': TestConfig,
     'prod': ProdConfig,
     'default': DevConfig
 }
