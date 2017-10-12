@@ -17,3 +17,4 @@ def level_type(level):
 def status_type(status):
     if status != 'pending' and status != 'processing' and status != 'ended':
         raise ValueError('Not a proper status!')
+    return status

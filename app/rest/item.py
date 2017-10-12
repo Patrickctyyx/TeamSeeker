@@ -30,6 +30,7 @@ class ItemApi(Resource):
         if item.type == 1:
             result['tea_id'] = item.project.tea_id
             result['theme'] = item.project.theme
+            result['introduction'] = item.project.introduction
         else:
             result['comp_name'] = item.competition.comp_name
             result['publisher_id'] = item.competition.publisher_id
@@ -67,7 +68,7 @@ class ItemApi(Resource):
         if item.type == 1:
             if user.identity != 1:
                 raise PermissionNotMatch()
-            if not args.get('theme'):
+            if not args.get('theme') or not args.get('introduction'):
                 raise LackOfInfo('theme')
             item_info = Project(id=item.id)
             item_info.tea_id = user.openid

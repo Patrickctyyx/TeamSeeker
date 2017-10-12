@@ -32,10 +32,6 @@ item_post_api.add_argument(
 )
 # if it's a Project
 item_post_api.add_argument(
-    'tea_id',
-    type=str
-)
-item_post_api.add_argument(
     'theme',
     type=str
 )

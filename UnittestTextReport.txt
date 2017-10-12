@@ -1,0 +1,33 @@
+test_auth_post_invalid_token (tests.TestApi) ... ok
+test_item_get_lackinfo (tests.TestApi) ... ok
+test_item_get_not_found (tests.TestApi) ... ok
+test_item_get_success (tests.TestApi) ... ok
+test_project_put_successful (tests.TestApi) ... FAIL
+test_student_get_info (tests.TestApi) ... ok
+test_student_get_not_found (tests.TestApi) ... ok
+test_student_post_duplicate (tests.TestApi) ... ok
+test_student_post_item_duplicate (tests.TestApi) ... ok
+test_student_post_item_success (tests.TestApi) ... ok
+test_student_post_lackinfo (tests.TestApi) ... ok
+test_student_post_permission_not_match (tests.TestApi) ... ok
+test_student_post_success (tests.TestApi) ... ok
+test_student_put_duplicate (tests.TestApi) ... ok
+test_teacher_post_item_duplicate (tests.TestApi) ... ok
+test_teacher_post_item_success (tests.TestApi) ... ok
+test_teacher_post_lackinfo (tests.TestApi) ... ok
+test_teacher_post_permission_not_match (tests.TestApi) ... ok
+test_teacher_post_success (tests.TestApi) ... ok
+test_wxlogin (tests.TestApi) ... ok
+
+======================================================================
+FAIL: test_project_put_successful (tests.TestApi)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/patrick/Desktop/TeamSeeker/tests/tests.py", line 528, in test_project_put_successful
+    self.assertTrue(the_proj.status, 'processing')
+AssertionError: None is not true : processing
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.090s
+
+FAILED (failures=1)

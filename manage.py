@@ -32,6 +32,10 @@ def test():
     import unittest
 
     tests = unittest.TestLoader().discover('tests')
+
+    # with open('UnittestTextReport.txt', 'a') as f:
+    #     unittest.TextTestRunner(stream=f, verbosity=2).run(tests)
+
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 
