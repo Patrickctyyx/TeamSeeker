@@ -24,7 +24,12 @@ def create_app(object_name):
     rest_api.add_resource(
         ItemApi,
         '/api/create',
-        '/api/create/<int:proj_id>'
+        '/api/create/<int:item_id>'
+    )
+    rest_api.add_resource(
+        ApplicationApi,
+        '/api/apply',
+        '/api/apply/<int:item_id>'
     )
     rest_api.init_app(app)
 

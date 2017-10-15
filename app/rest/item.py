@@ -12,11 +12,11 @@ from app.errors import (
 
 class ItemApi(Resource):
 
-    def get(self, proj_id=None):
+    def get(self, item_id=None):
 
-        if not proj_id:
-            raise LackOfInfo('project id')
-        item = Item.query.get(proj_id)
+        if not item_id:
+            raise LackOfInfo('item id')
+        item = Item.query.get(item_id)
         if not item:
             raise ObjectNotFound('item')
         result = dict()
@@ -127,14 +127,16 @@ class ItemApi(Resource):
         db.session.commit()
         return {'msg': 'ok'}, 200
 
-    def delete(self, proj_id=None):
+    def delete(self, item_id=None):
 
         args = item_delete_api.parse_args()
 
         user = User.verify_auth_token(args['token'])
         if not user:
             raise InvalidToken()
-        item = Item.query.get(proj_id)
+        if not item_id:
+            raise LackOfInfo('item id')
+        item = Item.query.get(item_id)
         if not item:
             raise ObjectNotFound('item')
 

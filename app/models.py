@@ -94,6 +94,7 @@ class Item(db.Model):
     type = db.Column(db.Integer)
     # 项目人数
     num = db.Column(db.Integer)
+    current_num = db.Column(db.Integer)
     status = db.Column(db.Enum('pending', 'processing', 'ended'))
     ddl = db.Column(db.String(64))
     requires = db.Column(db.Text)
@@ -149,7 +150,7 @@ class Application(db.Model):
     stu_id = db.Column(db.ForeignKey('student.openid'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
     content = db.Column(db.Text)
-    cred_at = db.Column(db.DateTime)
+    cred_at = db.Column(db.DateTime, default=datetime.datetime.now)
     # status == 1 => proved == 0 => not dealt with == -1 => rejected
     status = db.Column(db.Integer, default=0)
 
