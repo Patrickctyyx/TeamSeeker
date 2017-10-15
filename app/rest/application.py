@@ -18,7 +18,7 @@ class ApplicationApi(Resource):
 
         applications = Application.query.filter_by(item_id=item_id).all()
         if not applications:
-            return {'msg': 'no applications!'}
+            return {'applications': []}, 200
 
         result_list = list()
 
