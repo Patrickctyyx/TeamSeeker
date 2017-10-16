@@ -227,7 +227,7 @@ class TestApi(unittest.TestCase):
             '/api/apply/1'
         )
 
-        self.assertTrue('no application' in result0.data.decode())
+        self.assertTrue('[]' in result0.data.decode())
         self.assertTrue('are you ok' in result2.data.decode())
 
     def test_apply_delete_successful(self):
