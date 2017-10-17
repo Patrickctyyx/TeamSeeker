@@ -94,7 +94,10 @@ class Item(db.Model):
     type = db.Column(db.Integer)
     # 项目人数
     num = db.Column(db.Integer)
+    # 已进入项目人数
     current_num = db.Column(db.Integer)
+    # 申请人数
+    apply_count = db.Column(db.Integer)
     status = db.Column(db.Enum('pending', 'processing', 'ended'))
     ddl = db.Column(db.String(64))
     requires = db.Column(db.Text)

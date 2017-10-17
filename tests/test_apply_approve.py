@@ -252,3 +252,85 @@ class TestApi(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
         self.assertTrue('ok' in result.data.decode())
         self.assertTrue(after_apply is None)
+
+    def test_approve_successful(self):
+        tea1 = User.query.get('teacher1')
+        token = tea1.generate_auth_token()
+
+        stu1 = User.query.get('student1')
+        token2 = stu1.generate_auth_token()
+
+        apply = Application(
+            stu_id='student1',
+            item_id='1'
+        )
+        apply2 = Application(
+            stu_id='student2',
+            item_id=2
+        )
+        db.session.add(apply)
+        db.session.add(apply2)
+        db.session.flush()
+
+        result = self.client.post(
+            '/api/approve',
+            data={
+                'token': token,
+                'apply_id': apply.id,
+                'result': 1
+            }
+        )
+
+        result2 = self.client.post(
+            '/api/approve',
+            data={
+                'token': token2,
+                'apply_id': apply2.id,
+                'result': -1
+            }
+        )
+
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(apply.status, 1)
+        self.assertEqual(result2.status_code, 200)
+        self.assertEqual(apply2.status, -1)
+
+    def test_approve_not_found(self):
+        tea1 = User.query.get('teacher1')
+        token = tea1.generate_auth_token()
+
+        result = self.client.post(
+            '/api/approve',
+            data={
+                'token': token,
+                'apply_id': 100,
+                'result': 1
+            }
+        )
+
+        self.assertEqual(result.status_code, 500)
+        self.assertTrue('exist' in result.data.decode())
+
+    def test_approve_permission_denied(self):
+        tea1 = User.query.get('teacher1')
+        token = tea1.generate_auth_token()
+
+        apply2 = Application(
+            stu_id='student2',
+            item_id=2
+        )
+        db.session.add(apply2)
+        db.session.flush()
+
+        result = self.client.post(
+            '/api/approve',
+            data={
+                'token': token,
+                'apply_id': apply2.id,
+                'result': 1
+            }
+        )
+
+        self.assertEqual(result.status_code, 500)
+        self.assertEqual(apply2.status, 0)
+        self.assertTrue('permission' in result.data.decode())

@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from .application_parser import application_post_put_parser, application_delete_parser
-from app.models import db, User, Teacher, Student, Item, Project, Competition, Application
+from app.models import db, User, Application
 from app.errors import (
     InvalidToken,
     PermissionNotMatch,

@@ -5,6 +5,7 @@ from app.rest.wechat import WeChatLoginApi
 from app.rest.auth import AuthApi
 from app.rest.application import ApplicationApi
 from app.rest.item import ItemApi
+from app.rest.approve import ApproveApi
 from flask_restful import Api
 
 
@@ -30,6 +31,10 @@ def create_app(object_name):
         ApplicationApi,
         '/api/apply',
         '/api/apply/<int:item_id>'
+    )
+    rest_api.add_resource(
+        ApproveApi,
+        '/api/approve'
     )
     rest_api.init_app(app)
 
