@@ -1,5 +1,5 @@
 import datetime
-
+import uuid
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
@@ -20,7 +20,8 @@ competitions = db.Table('comp_stu',
 
 class User(db.Model):
 
-    openid = db.Column(db.String(32), primary_key=True)
+    openid = db.Column(db.String(36), primary_key=True,
+                       default=lambda: str(uuid.uuid4()))
     # identity == 1 => teacher, == 0 => student
     identity = db.Column(db.Integer)
     name = db.Column(db.String(32))
@@ -29,6 +30,7 @@ class User(db.Model):
     college = db.Column(db.String(32))
     department = db.Column(db.String(32))
     introduction = db.Column(db.Text)
+    wx_id = db.Column(db.String(36))
 
     teacher = db.relationship(
         'Teacher',
@@ -102,6 +104,7 @@ class Item(db.Model):
     ddl = db.Column(db.String(64))
     requires = db.Column(db.Text)
     cred_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    last_modified = db.Column(db.DateTime, default=datetime.datetime.now)
 
     project = db.relationship(
         'Project',

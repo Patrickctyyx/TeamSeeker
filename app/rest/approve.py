@@ -12,22 +12,6 @@ from app.errors import (
 
 class ApproveApi(Resource):
 
-    def get(self):
-        # args = approve_get_parser.parse_args()
-        # user = User.verify_auth_token(args['token'])
-        # if not user:
-        #     raise InvalidToken()
-        #
-        # result = list()
-        #
-        # if args.get['status'] is None:
-        #     applications = Application.query.filter_by(
-        #         item_id=args['item_id']
-        #     ).all()
-        #     info = dict()
-        #     for
-        pass
-
     def post(self):
         args = approve_post_parser.parse_args()
         user = User.verify_auth_token(args['token'])

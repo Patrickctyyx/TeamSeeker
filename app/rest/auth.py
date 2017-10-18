@@ -13,11 +13,14 @@ from app.errors import (
 class AuthApi(Resource):
 
     def get(self, openid=None):
-        if not openid:
-            raise LackOfInfo('openid')
-        user = User.query.get(openid)
+
+        user = User.verify_auth_token(openid)
         if not user:
-            raise ObjectNotFound('user')
+            if not openid:
+                raise LackOfInfo('openid')
+            user = User.query.get(openid)
+            if not user:
+                raise ObjectNotFound('user')
 
         result = dict()
         result['name'] = user.name

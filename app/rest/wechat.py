@@ -21,9 +21,9 @@ class WeChatLoginApi(Resource):
         info = r.json()
         if 'session_key' not in info:
             raise InvalidJSCode(info)
-        user = User.query.get(info.get('openid'))
+        user = User.query.filter_by(wx_id=info.get('openid')).first()
         if not user:
-            user = User(openid=info.get('openid'))
+            user = User(wx_id=info.get('openid'))
             db.session.add(user)
             db.session.commit()
         token = user.generate_auth_token().decode()

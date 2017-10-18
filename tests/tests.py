@@ -17,7 +17,8 @@ class TestApi(unittest.TestCase):
             openid='teacher1',
             identity=1,
             name='wkm',
-            email='wkm@gmail.com'
+            email='wkm@gmail.com',
+            wx_id='teacher1'
         ))
         db.session.add(Teacher(
             openid='teacher1',
@@ -27,7 +28,8 @@ class TestApi(unittest.TestCase):
             openid='student1',
             identity=0,
             name='cty',
-            email='cty@gmail.com'
+            email='cty@gmail.com',
+            wx_id='student1'
         ))
         db.session.add(Student(
             openid='student1',
@@ -39,7 +41,8 @@ class TestApi(unittest.TestCase):
             openid='student2',
             identity=0,
             name='lf',
-            email='lf@gmail.com'
+            email='lf@gmail.com',
+            wx_id='student2'
         ))
         db.session.add(Student(
             openid='student2',
@@ -51,7 +54,8 @@ class TestApi(unittest.TestCase):
             openid='student3',
             identity=0,
             name='yrb',
-            email='yrb@gmail.com'
+            email='yrb@gmail.com',
+            wx_id='student3'
         ))
         db.session.add(Student(
             openid='student3',
