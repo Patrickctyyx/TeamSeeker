@@ -6,6 +6,10 @@ from app.rest.auth import AuthApi
 from app.rest.application import ApplicationApi
 from app.rest.item import ItemApi
 from app.rest.approve import ApproveApi
+from app.rest.index import IndexApi
+from app.rest.published import PublishedApi
+from app.rest.received_applications import RcvApplicationApi
+from app.rest.sent_applications import SentApplicationApi
 from flask_restful import Api
 
 
@@ -35,6 +39,22 @@ def create_app(object_name):
     rest_api.add_resource(
         ApproveApi,
         '/api/approve'
+    )
+    rest_api.add_resource(
+        IndexApi,
+        '/api/index'
+    )
+    rest_api.add_resource(
+        PublishedApi,
+        '/api/published'
+    )
+    rest_api.add_resource(
+        RcvApplicationApi,
+        '/api/received'
+    )
+    rest_api.add_resource(
+        SentApplicationApi,
+        '/api/sent'
     )
     rest_api.init_app(app)
 

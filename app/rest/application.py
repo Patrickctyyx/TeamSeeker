@@ -16,9 +16,11 @@ class ApplicationApi(Resource):
         if not item_id:
             raise LackOfInfo('item id')
 
-        applications = Application.query.filter_by(item_id=item_id).all()
+        applications = Application.query.filter_by(
+            item_id=item_id
+        ).order_by(Application.cred_at.desc()).all()
         if not applications:
-            return {'applications': []}, 200
+            return [], 200
 
         result_list = list()
 
@@ -32,7 +34,7 @@ class ApplicationApi(Resource):
             result['status'] = apply.status
             result_list.append(result)
 
-        return {'applications': result_list}, 200
+        return result_list, 200
 
     def post(self):
         args = application_post_put_parser.parse_args()

@@ -19,6 +19,7 @@ class ItemApi(Resource):
         item = Item.query.get(item_id)
         if not item:
             raise ObjectNotFound('item')
+
         result = dict()
         result['id'] = item.id
         result['type'] = item.type
@@ -27,6 +28,8 @@ class ItemApi(Resource):
         result['ddl'] = item.ddl
         result['requires'] = item.requires
         result['cred_at'] = str(item.cred_at)
+        result['last_modified'] = str(item.last_modified)
+
         if item.type == 1:
             result['tea_id'] = item.project.tea_id
             result['theme'] = item.project.theme
