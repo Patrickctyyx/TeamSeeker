@@ -1,3 +1,4 @@
+import operator
 from flask_restful import Resource, reqparse
 from app.models import User, Competition
 from app.errors import ObjectNotFound
@@ -18,11 +19,14 @@ class PublishedApi(Resource):
         if not user:
             raise ObjectNotFound('user')
         if user.identity == 1:
-            posts = user.teacher.projects
+            posts = user.teacher.projects.all()
         else:
             posts = Competition.query.filter_by(
                 publisher_id=user.openid
-            ).order_by(Competition.item.cred_at).all()
+            ).all()
+
+        cmpfun = operator.attrgetter('item.cred_at')
+        posts.sort(key=cmpfun, reverse=True)
 
         result_list = list()
         for post in posts:

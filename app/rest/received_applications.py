@@ -21,11 +21,11 @@ class RcvApplicationApi(Resource):
 
         applications = list()
         if user.identity == 1:
-            items = user.teacher.projects
+            items = user.teacher.projects.all()
         else:
             items = Competition.query.filter_by(
                 publisher_id=user.openid
-            ).order_by(Competition.item.cred_at).all()
+            ).all()
         for item in items:
             applications.extend(item.item.applications)
 

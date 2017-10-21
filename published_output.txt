@@ -1,0 +1,60 @@
+1
+81ef4ad3-c481-4b0f-b96a-c962499e7e70
+[{"id": 1, "type": 1, "num": 4, "status": "pending", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.305864", "last_modified": "2017-10-21 15:28:21.305880", "tea_id": "81ef4ad3-c481-4b0f-b96a-c962499e7e70", "theme": "\u533a\u5757\u94fe", "introduction": "\u533a\u5757\u94fe"}]
+
+0
+fb8d2ab2-9f91-4943-bd9d-4eabd3d677b3
+[{"id": 4, "type": 0, "num": 3, "status": "ended", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.313165", "last_modified": "2017-10-21 15:28:21.313170", "comp_name": "\u5927\u5b66\u751f\u521b\u65b0\u521b\u4e1a\u5927\u8d5b", "publisher_id": "fb8d2ab2-9f91-4943-bd9d-4eabd3d677b3"}]
+
+0
+03b1c525-139b-4127-8343-ac12dde59892
+[]
+
+0
+c402f119-95ec-4727-bfad-106a333b495c
+[{"id": 5, "type": 0, "num": 8, "status": "pending", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.314798", "last_modified": "2017-10-21 15:28:21.314803", "comp_name": "\u6311\u6218\u676f", "publisher_id": "c402f119-95ec-4727-bfad-106a333b495c"}]
+
+0
+950ca65b-3d2d-41db-8d3b-0e0dcf11d4a2
+[]
+
+1
+ef5e597a-8f08-47f0-a26c-f0ff63cdf25f
+[{"id": 2, "type": 1, "num": 4, "status": "ended", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.309184", "last_modified": "2017-10-21 15:28:21.309191", "tea_id": "ef5e597a-8f08-47f0-a26c-f0ff63cdf25f", "theme": "Web \u5b89\u5168", "introduction": "Web \u5b89\u5168"}]
+
+0
+0c0983c8-5746-4838-96c7-b585e31abc5b
+[{"id": 6, "type": 0, "num": 3, "status": "pending", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.315954", "last_modified": "2017-10-21 15:28:21.315959", "comp_name": "\u6311\u6218\u676f", "publisher_id": "0c0983c8-5746-4838-96c7-b585e31abc5b"}]
+
+0
+d52be292-c037-4f7f-a2ec-0c899cebd542
+[{"id": 7, "type": 0, "num": 5, "status": "ended", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.317338", "last_modified": "2017-10-21 15:28:21.317342", "comp_name": "\u6311\u6218\u676f", "publisher_id": "d52be292-c037-4f7f-a2ec-0c899cebd542"}]
+
+0
+b0c6b4cb-25d0-45ce-908c-023957ca3e44
+[]
+
+0
+c7eefcb8-c287-49b8-b0f2-7286d2c7f83d
+[{"id": 8, "type": 0, "num": 6, "status": "ended", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.319184", "last_modified": "2017-10-21 15:28:21.319187", "comp_name": "\u8d62\u5728\u521b\u65b0", "publisher_id": "c7eefcb8-c287-49b8-b0f2-7286d2c7f83d"}]
+
+1
+1c3ea7ab-d825-4ee1-9fe5-5a095d795441
+[{"id": 3, "type": 1, "num": 5, "status": "pending", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.311109", "last_modified": "2017-10-21 15:28:21.311116", "tea_id": "1c3ea7ab-d825-4ee1-9fe5-5a095d795441", "theme": "\u533a\u5757\u94fe", "introduction": "\u533a\u5757\u94fe"}]
+
+0
+97866348-596c-41a9-8ff5-b2aaf318223f
+[{"id": 9, "type": 0, "num": 6, "status": "ended", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.320808", "last_modified": "2017-10-21 15:28:21.320812", "comp_name": "\u6e2f\u6fb3\u53f0\u4fa8\u5b66\u751f\u521b\u65b0\u521b\u4e1a\u5927\u8d5b", "publisher_id": "97866348-596c-41a9-8ff5-b2aaf318223f"}]
+
+0
+66ef1eca-4e9d-480a-8a27-adb4d7f37959
+[{"id": 10, "type": 0, "num": 8, "status": "processing", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.322856", "last_modified": "2017-10-21 15:28:21.322863", "comp_name": "\u6311\u6218\u676f", "publisher_id": "66ef1eca-4e9d-480a-8a27-adb4d7f37959"}]
+
+0
+fa1bb4af-0489-40f9-8daf-5787aa19bc20
+[]
+
+0
+6fe65641-9275-42a3-be96-ab39cf2d4b33
+[{"id": 11, "type": 0, "num": 5, "status": "processing", "ddl": null, "requires": "\u4e0d\u9650", "cred_at": "2017-10-21 15:28:21.324931", "last_modified": "2017-10-21 15:28:21.324938", "comp_name": "\u8d62\u5728\u521b\u65b0", "publisher_id": "6fe65641-9275-42a3-be96-ab39cf2d4b33"}]
+
