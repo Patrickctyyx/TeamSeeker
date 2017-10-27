@@ -51,5 +51,5 @@ class PublishedApi(Resource):
 
             result_list.append(result)
 
-        return result_list, 200
+        return result_list, 200, {'Access-Control-Allow-Origin': '*'}
 

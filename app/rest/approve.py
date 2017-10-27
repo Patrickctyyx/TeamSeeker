@@ -45,4 +45,4 @@ class ApproveApi(Resource):
         db.session.add(application)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200
+        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}

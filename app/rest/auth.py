@@ -36,7 +36,7 @@ class AuthApi(Resource):
             result['level'] = student.level
             result['enter_year'] = student.enter_year
 
-        return result, 200
+        return result, 200, {'Access-Control-Allow-Origin': '*'}
 
     def post(self):
 
@@ -86,7 +86,7 @@ class AuthApi(Resource):
             db.session.rollback()
             raise DuplicateInfo('s_num or p_num or email')
 
-        return {'msg': 'ok'}, 200
+        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
 
     def put(self):
 
@@ -118,5 +118,5 @@ class AuthApi(Resource):
         db.session.add(user)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200
+        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
 

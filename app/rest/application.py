@@ -34,7 +34,7 @@ class ApplicationApi(Resource):
             result['status'] = apply.status
             result_list.append(result)
 
-        return result_list, 200
+        return result_list, 200, {'Access-Control-Allow-Origin': '*'}
 
     def post(self):
         args = application_post_put_parser.parse_args()
@@ -60,7 +60,7 @@ class ApplicationApi(Resource):
         db.session.add(apply)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200
+        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
 
     def put(self):
         args = application_post_put_parser.parse_args()
@@ -83,7 +83,7 @@ class ApplicationApi(Resource):
         db.session.add(apply)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200
+        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
 
     def delete(self, item_id=None):
 
@@ -103,4 +103,4 @@ class ApplicationApi(Resource):
         db.session.delete(apply)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200
+        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
