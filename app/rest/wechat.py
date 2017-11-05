@@ -28,5 +28,5 @@ class WeChatLoginApi(Resource):
             db.session.commit()
         token = user.generate_auth_token().decode()
 
-        return {'token': token}, 200, {'Access-Control-Allow-Origin': '*'}
+        return {'token': token}, 200
 

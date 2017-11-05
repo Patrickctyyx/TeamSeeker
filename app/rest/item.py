@@ -38,7 +38,7 @@ class ItemApi(Resource):
             result['comp_name'] = item.competition.comp_name
             result['publisher_id'] = item.competition.publisher_id
 
-        return result, 200, {'Access-Control-Allow-Origin': '*'}
+        return result, 200
 
     def post(self):
 
@@ -89,7 +89,7 @@ class ItemApi(Resource):
         db.session.add(item_info)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
+        return {'msg': 'ok'}, 200
 
     def put(self):
 
@@ -128,7 +128,7 @@ class ItemApi(Resource):
 
         db.session.add(item)
         db.session.commit()
-        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
+        return {'msg': 'ok'}, 200
 
     def delete(self, item_id=None):
 
@@ -157,4 +157,4 @@ class ItemApi(Resource):
         db.session.delete(item)
         db.session.commit()
 
-        return {'msg': 'ok'}, 200, {'Access-Control-Allow-Origin': '*'}
+        return {'msg': 'ok'}, 200

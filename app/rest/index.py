@@ -40,6 +40,6 @@ class IndexApi(Resource):
 
             result_list.append(result)
 
-        return result_list, 200, {'Access-Control-Allow-Origin': '*'}
+        return result_list, 200
 
 
