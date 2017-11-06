@@ -24,6 +24,8 @@ class IndexApi(Resource):
             result['id'] = item.id
             result['type'] = item.type
             result['num'] = item.num
+            result['current_num'] = item.current_num
+            result['apply_count'] = item.apply_count
             result['status'] = item.status
             result['ddl'] = item.ddl
             result['requires'] = item.requires
