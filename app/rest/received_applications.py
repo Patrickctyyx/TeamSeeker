@@ -16,6 +16,7 @@ class RcvApplicationApi(Resource):
         args = rcv_get_parser.parse_args()
 
         user = User.verify_auth_token(args['token'])
+        # user = User.query.get(args['token'])
         if not user:
             raise InvalidToken()
 
