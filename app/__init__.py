@@ -10,6 +10,7 @@ from app.rest.index import IndexApi
 from app.rest.published import PublishedApi
 from app.rest.received_applications import RcvApplicationApi
 from app.rest.sent_applications import SentApplicationApi
+from app.rest.side_bar import SideBarApi
 from flask_restful import Api
 from werkzeug.datastructures import Headers
 
@@ -73,6 +74,10 @@ def create_app(object_name):
     rest_api.add_resource(
         SentApplicationApi,
         '/api/sent'
+    )
+    rest_api.add_resource(
+        SideBarApi,
+        '/api/sidebar'
     )
     rest_api.init_app(app)
 
