@@ -2,7 +2,7 @@ import re
 
 
 def email_type(email):
-    if re.match('^[0-9a-zA-Z\_]+@[0-9a-zA-Z\_]+\.com$', email):
+    if re.match('^[0-9a-zA-Z\_]+@[0-9a-zA-Z\_\.]+\.[a-zA-Z]+$', email):
         return email
     else:
         raise ValueError('Not a proper email!')

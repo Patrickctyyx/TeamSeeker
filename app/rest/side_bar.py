@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 from app.models import Item
 
 
@@ -13,9 +13,17 @@ class SideBarApi(Resource):
         #     Item.last_modified.desc()
         # ).limit(5).all()
 
+        sidebar_get_parser = reqparse.RequestParser()
+        sidebar_get_parser.add_argument(
+            'type',
+            type=int
+        )
+        args = sidebar_get_parser.parse_args()
+
+        return_type = args.get('type') or 0
         recent = Item.query.order_by(
             Item.cred_at.desc()
-        ).limit(5).all()
+        ).filter(Item.type == return_type).limit(5).all()
 
         result_list = list()
 
@@ -32,7 +40,7 @@ class SideBarApi(Resource):
             result['cred_at'] = str(item.cred_at)
             result['last_modified'] = str(item.last_modified)
 
-            if item.type == 1:
+            if return_type == 1:
                 result['tea_id'] = item.project.tea_id
                 result['theme'] = item.project.theme
                 result['introduction'] = item.project.introduction

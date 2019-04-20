@@ -15,8 +15,8 @@ class IndexApi(Resource):
         page = args.get('page') or 1
         items = Item.query.order_by(
             Item.last_modified.desc()
-        # ).paginate(page, 5).items
-        ).paginate(page, 15).items
+        ).paginate(page, 5).items
+        # ).paginate(page, 15).items
 
         result_list = list()
 

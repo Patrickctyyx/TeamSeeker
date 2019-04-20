@@ -51,7 +51,7 @@ class AuthApi(Resource):
         user.university = args['university']
         user.college = args['college']
         user.department = args['department']
-        user.information = args.get('information')
+        user.introduction = args.get('introduction')
 
         db.session.add(user)
         try:
@@ -99,7 +99,7 @@ class AuthApi(Resource):
         user.university = args.get('university')
         user.college = args.get('college')
         user.department = args.get('department')
-        user.information = args.get('information')
+        user.introduction = args.get('introduction')
 
         db.session.add(user)
 

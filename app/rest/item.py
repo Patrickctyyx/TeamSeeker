@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from .item_parser import item_post_api, item_put_api, item_delete_api
-from app.models import db, User, Item, Project, Competition
+from app.models import db, User, Item, Project, Competition, Application
 from app.errors import (
     InvalidToken,
     DuplicateInfo,
@@ -24,6 +24,8 @@ class ItemApi(Resource):
         result['id'] = item.id
         result['type'] = item.type
         result['num'] = item.num
+        result['current_num'] = item.current_num
+        result['apply_count'] = item.apply_count
         result['status'] = item.status
         result['ddl'] = item.ddl
         result['requires'] = item.requires
@@ -63,7 +65,10 @@ class ItemApi(Resource):
         item.type = args['type']
         item.num = args.get('num')
         item.ddl = args.get('ddl')
+        item.status = args.get('status')
         item.requires = args['requires']
+        item.current_num = 0
+        item.apply_count = 0
 
         db.session.add(item)
         db.session.flush()
@@ -153,8 +158,14 @@ class ItemApi(Resource):
         if creater_id != user.openid:
             raise PermissionNotMatch()
 
+        applications = Application.query.filter_by(
+            item_id=item_id
+        ).all()
+
         db.session.delete(item_info)
         db.session.delete(item)
+        for appli in applications:
+            db.session.delete(appli)
         db.session.commit()
 
         return {'msg': 'ok'}, 200

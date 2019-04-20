@@ -15,7 +15,9 @@ class PublishedApi(Resource):
         )
         args = published_get_api.parse_args()
 
-        user = User.query.get(args['publisher_id'])
+        user = User.verify_auth_token(args['publisher_id'])
+        if not user:
+            user = User.query.get(args['publisher_id'])
         if not user:
             raise ObjectNotFound('user')
         if user.identity == 1:
@@ -38,6 +40,7 @@ class PublishedApi(Resource):
             result['status'] = item.status
             result['ddl'] = item.ddl
             result['requires'] = item.requires
+            result['current_num'] = item.current_num
             result['cred_at'] = str(item.cred_at)
             result['last_modified'] = str(item.last_modified)
 

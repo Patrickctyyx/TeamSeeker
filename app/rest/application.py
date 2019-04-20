@@ -52,6 +52,8 @@ class ApplicationApi(Resource):
         if apply:
             raise DuplicateInfo('application')
 
+        # todo 自己不能申请自己
+
         apply = Application()
         apply.stu_id = user.openid
         apply.item_id = args['item_id']
