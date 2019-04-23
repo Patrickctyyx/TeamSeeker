@@ -41,6 +41,7 @@ class PublishedApi(Resource):
             result['ddl'] = item.ddl
             result['requires'] = item.requires
             result['current_num'] = item.current_num
+            result['apply_count'] = item.apply_count
             result['cred_at'] = str(item.cred_at)
             result['last_modified'] = str(item.last_modified)
 

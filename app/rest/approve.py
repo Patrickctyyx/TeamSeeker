@@ -40,6 +40,8 @@ class ApproveApi(Resource):
             else:
                 proj = item.project
                 student.projects.append(proj)
+            item.current_num += 1
+            db.session.add(item)
             db.session.add(student)
 
         db.session.add(application)

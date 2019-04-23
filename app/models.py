@@ -44,7 +44,7 @@ class User(db.Model):
         uselist=False
     )
 
-    def generate_auth_token(self, expiration=600):
+    def generate_auth_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expires_in=expiration)
         return s.dumps({'openid': self.openid})
 

@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from .application_parser import application_post_put_parser, application_delete_parser
-from app.models import db, User, Application
+from app.models import db, User, Application, Item
 from app.errors import (
     InvalidToken,
     PermissionNotMatch,
@@ -59,7 +59,11 @@ class ApplicationApi(Resource):
         apply.item_id = args['item_id']
         apply.content = args['content']
 
+        item = Item.query.get(args['item_id'])
+        item.apply_count += 1
+
         db.session.add(apply)
+        db.session.add(item)
         db.session.commit()
 
         return {'msg': 'ok'}, 200
@@ -102,7 +106,11 @@ class ApplicationApi(Resource):
             stu_id=user.openid
         ).first()
 
+        item = Item.query.get(item_id)
+        item.apply_count -= 1
+
         db.session.delete(apply)
+        db.session.add(item)
         db.session.commit()
 
         return {'msg': 'ok'}, 200
